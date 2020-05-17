@@ -12,6 +12,7 @@ function chargement(){
 
 
 
+//function qui enregistre le pseudo vérifié
 function enregistrePseudo(formulaire) {
 
     let pseudo =  document.getElementById("pseudo").value
@@ -24,6 +25,7 @@ function enregistrePseudo(formulaire) {
 }
 
 
+//verification du pseudo dand la db
 function traiterPseudo(){
 
     let pseudo =  document.getElementById("pseudo").value
@@ -37,25 +39,28 @@ function traiterPseudo(){
 
 }
 
+//conditions de la verification du pseudo avec deux possibilités
+//enregistre le pseudo ou demande d introduire un autre pseudo et de passer a la suite
+
 function verifePseudo(){
 
     let pseudo =  document.getElementById("pseudo").value
+    let reponse = JSON.parse(this.response);
 
-    let reponse = this.response;
 
-    console.log(reponse)
-    if( reponse == 1 ){
+    if( reponse[0].nbr == 1 ){
         alert("Ce pseudo existe deja , vous etes bien  : " + pseudo + " Si non trouvé un autre pseudo")
 
     }
 
-    if( reponse == 0 ){
+    else if( reponse[0].nbr == 0 ){
+        ;
+
+        alert("vous avez bien été enregistré vous pouvez descendre sur la page");
         enregistrePseudo();
-        alert("vous avez bien été enregistré vous pouvez passer à la page suivante");
     }
     return false;
 }
-
 
 
 
